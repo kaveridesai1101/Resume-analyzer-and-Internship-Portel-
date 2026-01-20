@@ -1,0 +1,17 @@
+﻿Sending POST to http://127.0.0.1:8001/api/v1/applications/...
+Status Code: 400
+Error Detail: Backend Crash: (sqlite3.OperationalError) no such column: applications.recruiter_notes
+[SQL: SELECT applications.id AS applications_id, applications.job_id AS applications_job_id, applications.candidate_id AS applications_candidate_id, applications.status AS applications_status, applications.match_score AS applications_match_score, applications.recruiter_notes AS applications_recruiter_notes, applications.feedback AS applications_feedback, applications.applied_at AS applications_applied_at, applications.updated_at AS applications_updated_at 
+FROM applications 
+WHERE applications.job_id = ? AND applications.candidate_id = ?
+ LIMIT ? OFFSET ?]
+[parameters: (1, 1, 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback snippet:
+plications.status AS applications_status, applications.match_score AS applications_match_score, applications.recruiter_notes AS applications_recruiter_notes, applications.feedback AS applications_feedback, applications.applied_at AS applications_applied_at, applications.updated_at AS applications_updated_at 
+FROM applications 
+WHERE applications.job_id = ? AND applications.candidate_id = ?
+ LIMIT ? OFFSET ?]
+[parameters: (1, 1, 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
