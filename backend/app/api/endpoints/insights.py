@@ -7,7 +7,7 @@ router = APIRouter()
 
 @router.get("/market-trends")
 def get_market_trends() -> List[Dict[str, Any]]:
-    # In a real app, this would aggregate job data
+    # In a real app, this would aggregate internship data
     return [
         {"role": "Frontend", "demand": 85, "growth": "+12%"},
         {"role": "Backend", "demand": 92, "growth": "+15%"},

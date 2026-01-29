@@ -6,10 +6,10 @@ BASE_URL = "http://localhost:8000/api/v1"
 def test_auth():
     print("Testing Registration...")
     reg_data = {
-        "email": "test@candidate.com",
+        "email": "test@student.com",
         "password": "password123",
-        "full_name": "Test Candidate",
-        "role": "candidate"
+        "full_name": "Test Student",
+        "role": "student"
     }
     try:
         r = requests.post(f"{BASE_URL}/auth/register", json=reg_data)
@@ -22,7 +22,7 @@ def test_auth():
 
     print("\nTesting Login...")
     login_data = {
-        "username": "test@candidate.com", # OAuth2 form uses username field for email
+        "username": "test@student.com", # OAuth2 form uses username field for email
         "password": "password123"
     }
     try:

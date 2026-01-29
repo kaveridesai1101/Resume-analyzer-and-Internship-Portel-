@@ -4,7 +4,7 @@ class MatchingEngine:
     def __init__(self):
         pass
 
-    def calculate_score(self, resume_data: Dict, job_data: Dict) -> Dict:
+    def calculate_score(self, resume_data: Dict, internship_data: Dict) -> Dict:
         """
         Calculates match score based on weighted criteria.
         Match Score = (Skill Match × 40%) + (Experience × 30%) + (Education × 15%) + (ATS × 10%) + (Keyword Match × 5%)
@@ -12,13 +12,13 @@ class MatchingEngine:
         
         # 1. Skill Match (40%)
         resume_skills = set([s.lower() for s in resume_data.get("skills", [])])
-        job_skills = set([s.lower() for s in job_data.get("required_skills", [])])
+        internship_skills = set([s.lower() for s in internship_data.get("required_skills", [])])
         
-        if not job_skills:
+        if not internship_skills:
             skill_score = 0
         else:
-            matches = resume_skills.intersection(job_skills)
-            skill_score = (len(matches) / len(job_skills)) * 100
+            matches = resume_skills.intersection(internship_skills)
+            skill_score = (len(matches) / len(internship_skills)) * 100
 
         # 2. Experience Match (30%)
         # Simplify: if experience matches or exceeds, 100%, else proportional
@@ -52,6 +52,6 @@ class MatchingEngine:
                 "ats_score": ats_score,
                 "keyword_match": keyword_score
             },
-            "explanation": f"Matched {len(matches)} out of {len(job_skills)} required skills.",
-            "missing_skills": list(job_skills - resume_skills)
+            "explanation": f"Matched {len(matches)} out of {len(internship_skills)} required skills.",
+            "missing_skills": list(internship_skills - resume_skills)
         }

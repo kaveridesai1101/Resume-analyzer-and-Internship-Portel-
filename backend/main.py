@@ -11,6 +11,11 @@ from app.models import all_models
 from app.api.router import api_router
 from app.core.socket import manager
 from fastapi import WebSocket, WebSocketDisconnect
+from fastapi.staticfiles import StaticFiles
+
+# Ensure uploads directory exists
+if not os.path.exists("uploads"):
+    os.makedirs("uploads")
 
 # Ensure tables are created
 all_models.Base.metadata.create_all(bind=engine)
@@ -32,7 +37,7 @@ if os.getenv("BACKEND_CORS_ORIGINS"):
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allow_origins_list,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -47,17 +52,9 @@ async def websocket_endpoint(websocket: WebSocket, user_id: str):
     except WebSocketDisconnect:
         manager.disconnect(websocket, user_id)
 
-# Optional logging for debugging
-@app.middleware("http")
-async def log_requests(request: Request, call_next):
-    start_time = time.time()
-    print(f"DEBUG: Incoming {request.method} request to {request.url.path}")
-    response = await call_next(request)
-    process_time = time.time() - start_time
-    print(f"DEBUG: Completed {request.method} {request.url.path} - Status: {response.status_code} in {process_time:.2f}s")
-    return response
-
 app.include_router(api_router, prefix="/api/v1")
+
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 @app.get("/")
 def read_root():

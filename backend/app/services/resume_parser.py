@@ -12,7 +12,7 @@ class ResumeParser:
         import re
         
         data = {
-            "name": "Candidate",
+            "name": "Student",
             "email": "",
             "phone": "",
             "skills": [],
@@ -66,13 +66,13 @@ class ResumeParser:
                 if any(role in line.lower() for role in ["engineer", "developer", "manager", "analyst", "intern"]):
                     data["experience"].append({
                         "role": line.split(" at ")[0] if " at " in line else line.split(" - ")[0],
-                        "company": line.split(" at ")[1] if " at " in line else "Various",
+                        "organization": line.split(" at ")[1] if " at " in line else "Various",
                         "duration": "Duration specified" if any(char.isdigit() for char in line) else "Not specified",
                         "clarity": "Roles are clearly defined with measurable results" if len(line) > 40 else "Experience lacks quantified impact"
                     })
         
         if not data["experience"]:
-            data["experience"].append({"role": "Not Detected", "company": "Not Detected", "duration": "-", "clarity": "Experience section missing or unclear"})
+            data["experience"].append({"role": "Not Detected", "organization": "Not Detected", "duration": "-", "clarity": "Experience section missing or unclear"})
 
         # Education Section (Heuristic)
         edu_keywords = ["university", "college", "institute", "bachelor", "master", "phd", "degree", "school"]

@@ -1,0 +1,6 @@
+﻿(0, 'id', 'INTEGER', 1, None, 1)
+(1, 'email', 'VARCHAR', 0, None, 0)
+(2, 'hashed_password', 'VARCHAR', 0, None, 0)
+(3, 'full_name', 'VARCHAR', 0, None, 0)
+(4, 'role', 'VARCHAR', 0, None, 0)
+(5, 'is_active', 'BOOLEAN', 0, None, 0)

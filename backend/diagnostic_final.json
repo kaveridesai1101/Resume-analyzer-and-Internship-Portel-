@@ -1,0 +1,245 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "email": "test_1768683238@example.com",
+            "role": "candidate"
+        },
+        {
+            "id": 2,
+            "email": "test_1768683241@example.com",
+            "role": "candidate"
+        },
+        {
+            "id": 3,
+            "email": "kaveri@gmail.com",
+            "role": "candidate"
+        },
+        {
+            "id": 4,
+            "email": "test_1768683466@example.com",
+            "role": "candidate"
+        },
+        {
+            "id": 5,
+            "email": "test_1768683467@example.com",
+            "role": "candidate"
+        },
+        {
+            "id": 6,
+            "email": "test_1768683537@example.com",
+            "role": "candidate"
+        },
+        {
+            "id": 7,
+            "email": "login_test_1768683553@example.com",
+            "role": "candidate"
+        },
+        {
+            "id": 8,
+            "email": "testdemo@gmail.com",
+            "role": "candidate"
+        },
+        {
+            "id": 9,
+            "email": "recruiter@example.com",
+            "role": "recruiter"
+        },
+        {
+            "id": 10,
+            "email": "kusum@gmail.com",
+            "role": "candidate"
+        },
+        {
+            "id": 11,
+            "email": "demorec@gmail.com",
+            "role": "recruiter"
+        },
+        {
+            "id": 12,
+            "email": "admin@gmail.com",
+            "role": "candidate"
+        },
+        {
+            "id": 13,
+            "email": "admin@skillmatch.ai",
+            "role": "Admin"
+        },
+        {
+            "id": 14,
+            "email": "student@test.com",
+            "role": "candidate"
+        },
+        {
+            "id": 15,
+            "email": "recruiter@test.com",
+            "role": "recruiter"
+        },
+        {
+            "id": 16,
+            "email": "admin@test.com",
+            "role": "admin"
+        },
+        {
+            "id": 17,
+            "email": "tester_4436@test.com",
+            "role": "candidate"
+        },
+        {
+            "id": 18,
+            "email": "tester_7932@test.com",
+            "role": "candidate"
+        },
+        {
+            "id": 19,
+            "email": "tester_9340@test.com",
+            "role": "candidate"
+        },
+        {
+            "id": 20,
+            "email": "tester_1487@test.com",
+            "role": "candidate"
+        },
+        {
+            "id": 21,
+            "email": "tester_3524@test.com",
+            "role": "candidate"
+        },
+        {
+            "id": 22,
+            "email": "test@gmail.com",
+            "role": "candidate"
+        }
+    ],
+    "internships": [
+        {
+            "id": 1,
+            "title": "Java Developer Intern",
+            "recruiter_id": 9
+        },
+        {
+            "id": 2,
+            "title": "Full Stack Web Trainee",
+            "recruiter_id": 9
+        },
+        {
+            "id": 3,
+            "title": "Database Management Intern",
+            "recruiter_id": 9
+        }
+    ],
+    "applications": [
+        {
+            "id": 1,
+            "job_id": 1,
+            "candidate_id": 1,
+            "status": "Applied",
+            "match_score": 85,
+            "recruiter_notes": null,
+            "feedback": null,
+            "applied_at": "2026-01-20 17:13:08.300216",
+            "updated_at": "2026-01-20 17:13:08.302746",
+            "interview_date": null,
+            "interview_mode": null
+        },
+        {
+            "id": 2,
+            "job_id": 2,
+            "candidate_id": 1,
+            "status": "Applied",
+            "match_score": 85,
+            "recruiter_notes": null,
+            "feedback": null,
+            "applied_at": "2026-01-20 17:55:43.706045",
+            "updated_at": "2026-01-20 17:55:43.706084",
+            "interview_date": null,
+            "interview_mode": null
+        },
+        {
+            "id": 3,
+            "job_id": 3,
+            "candidate_id": 1,
+            "status": "Applied",
+            "match_score": 85,
+            "recruiter_notes": null,
+            "feedback": null,
+            "applied_at": "2026-01-20 18:40:53.749228",
+            "updated_at": "2026-01-20 18:40:53.749234",
+            "interview_date": null,
+            "interview_mode": null
+        },
+        {
+            "id": 4,
+            "job_id": 1,
+            "candidate_id": 1,
+            "status": "Applied",
+            "match_score": 85,
+            "recruiter_notes": null,
+            "feedback": null,
+            "applied_at": "2026-01-22T17:55:11.441733",
+            "updated_at": null,
+            "interview_date": null,
+            "interview_mode": null
+        },
+        {
+            "id": 5,
+            "job_id": 3,
+            "candidate_id": 9,
+            "status": "Applied",
+            "match_score": 85,
+            "recruiter_notes": null,
+            "feedback": null,
+            "applied_at": "2026-01-22T12:32:56.983498",
+            "updated_at": "2026-01-22T12:32:56.983498",
+            "interview_date": null,
+            "interview_mode": null
+        }
+    ],
+    "candidate_profiles": [
+        {
+            "id": 1,
+            "user_id": 8,
+            "name": "RESUME SAMPLES"
+        },
+        {
+            "id": 2,
+            "user_id": 10,
+            "name": "%PDF-1.6\r%"
+        },
+        {
+            "id": 3,
+            "user_id": 14,
+            "name": "Kaveri Student"
+        },
+        {
+            "id": 4,
+            "user_id": 17,
+            "name": "Test Student"
+        },
+        {
+            "id": 5,
+            "user_id": 18,
+            "name": "Test Student"
+        },
+        {
+            "id": 6,
+            "user_id": 19,
+            "name": "Test Student"
+        },
+        {
+            "id": 7,
+            "user_id": 20,
+            "name": "Test Student"
+        },
+        {
+            "id": 8,
+            "user_id": 21,
+            "name": "Test Student"
+        },
+        {
+            "id": 9,
+            "user_id": 22,
+            "name": "RESUME SAMPLES"
+        }
+    ]
+}

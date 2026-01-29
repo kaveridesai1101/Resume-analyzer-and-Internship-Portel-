@@ -1,5 +1,5 @@
 from app.database import SessionLocal
-from app.models.all_models import Job, User
+from app.models.all_models import Internship, User
 from datetime import datetime
 
 db = SessionLocal()
@@ -13,13 +13,13 @@ if not recruiter:
     db.add(recruiter)
     db.commit()
 
-print(f"Adding job for Recruiter ID: {recruiter.id}")
+print(f"Adding internship for Recruiter ID: {recruiter.id}")
 
-test_job = Job(
+test_internship = Internship(
     recruiter_id=recruiter.id,
-    title="Test Job for Visibility",
+    title="Test Internship for Visibility",
     company="Visibility Check Inc.",
-    description="This is a test job to verify candidate dashboard visibility. It requires basic skills.",
+    description="This is a test internship to verify student dashboard visibility. It requires basic skills.",
     location="Remote",
     salary_range="$50k - $80k",
     required_skills=["Python", "Communication", "Teamwork"], # Generic skills
@@ -27,8 +27,8 @@ test_job = Job(
     created_at=datetime.utcnow()
 )
 
-db.add(test_job)
+db.add(test_internship)
 db.commit()
-db.refresh(test_job)
+db.refresh(test_internship)
 
-print(f"Created Job ID: {test_job.id} | Title: {test_job.title} | Skills: {test_job.required_skills}")
+print(f"Created Internship ID: {test_internship.id} | Title: {test_internship.title} | Skills: {test_internship.required_skills}")

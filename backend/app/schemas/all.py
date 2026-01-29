@@ -6,7 +6,7 @@ from datetime import datetime
 class UserBase(BaseModel):
     email: EmailStr
     full_name: str
-    role: str = "candidate" # candidate, recruiter, admin
+    role: str = "student" # student, recruiter, admin
 
 class UserCreate(UserBase):
     password: str
@@ -17,21 +17,39 @@ class UserInDB(UserBase):
 
     model_config = ConfigDict(from_attributes=True)
 
-# --- Candidate Schemas ---
-class CandidateProfileBase(BaseModel):
+# --- Recruiter Schemas ---
+class RecruiterProfileBase(BaseModel):
+    organization_name: Optional[str] = None
+    recruiter_id_code: Optional[str] = None
+    contact_email: Optional[EmailStr] = None
+
+class RecruiterProfileCreate(RecruiterProfileBase):
+    pass
+
+class RecruiterProfileResponse(RecruiterProfileBase):
+    id: int
+    user_id: int
+    verification_status: str
+    account_status: str
+    created_at: datetime
+
+    model_config = ConfigDict(from_attributes=True)
+
+# --- Student Schemas ---
+class StudentProfileBase(BaseModel):
     name: Optional[str] = None
     skills: List[str] = []
     experience: List[dict] = []
     education: List[dict] = []
     bio: Optional[str] = None
 
-class CandidateCreate(CandidateProfileBase):
+class StudentCreate(StudentProfileBase):
     pass
 
-class CandidateUpdate(CandidateProfileBase):
+class StudentUpdate(StudentProfileBase):
     pass
 
-class CandidateResponse(CandidateProfileBase):
+class StudentResponse(StudentProfileBase):
     id: int
     user_id: int
     resume_url: Optional[str] = None
@@ -41,8 +59,8 @@ class CandidateResponse(CandidateProfileBase):
     
     model_config = ConfigDict(from_attributes=True)
 
-class CandidateProfessionalResponse(BaseModel):
-    """Restricted view for Recruiters as per Master Prompt."""
+class StudentProfessionalResponse(BaseModel):
+    """Restricted view for Recruiters - AICTE Privacy Rules."""
     id: int
     name: Optional[str] = None
     skills: List[str] = []
@@ -51,8 +69,13 @@ class CandidateProfessionalResponse(BaseModel):
     bio: Optional[str] = None # Summary
     completeness: str = "Awaiting Resume" # Available status
     latest_score: Optional[int] = None
+    # MASKED: No phone, email, or address for privacy (AICTE Rule)
 
     model_config = ConfigDict(from_attributes=True)
+
+# Legacy alias for backward compatibility
+CandidateResponse = StudentResponse
+CandidateProfessionalResponse = StudentProfessionalResponse
 
 class ActivityLogResponse(BaseModel):
     id: int

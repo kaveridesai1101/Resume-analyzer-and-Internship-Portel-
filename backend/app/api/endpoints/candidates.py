@@ -1,14 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.models.all_models import CandidateProfile, User
+from app.models.all_models import CandidateProfile, User, Application, Internship
 from app.schemas.all import CandidateCreate, CandidateResponse, CandidateUpdate
 
 router = APIRouter()
 
 @router.post("/", response_model=CandidateResponse)
 def create_candidate_profile(candidate: CandidateCreate, user_id: int, db: Session = Depends(get_db)):
-    # Check if exists
     db_candidate = db.query(CandidateProfile).filter(CandidateProfile.user_id == user_id).first()
     if db_candidate:
         raise HTTPException(status_code=400, detail="Profile already exists")
@@ -32,16 +31,15 @@ def get_candidate_applications(user_id: int, db: Session = Depends(get_db)):
     if not candidate:
         return []
     
-    from app.models.all_models import Application, Job
-    apps = db.query(Application).filter(Application.candidate_id == candidate.id).all()
+    apps = db.query(Application).filter(Application.student_id == candidate.id).all()
     
     results = []
     for app in apps:
         results.append({
             "id": app.id,
-            "job_title": app.job.title,
-            "role": app.job.title, # Frontend uses .role
-            "company": app.job.company or (app.job.recruiter.full_name if app.job.recruiter else "Company"),
+            "job_title": app.internship.title,
+            "role": app.internship.title, 
+            "company": app.internship.company or (app.internship.recruiter.full_name if app.internship.recruiter else "Company"),
             "applied_at": app.applied_at.isoformat() if hasattr(app.applied_at, 'isoformat') else str(app.applied_at),
             "status": app.status,
             "match_score": app.match_score

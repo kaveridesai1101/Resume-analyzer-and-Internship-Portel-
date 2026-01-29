@@ -34,7 +34,8 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+import sqlite3
+async def get_current_user(token: str = Depends(oauth2_scheme)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -48,7 +49,25 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
     except JWTError:
         raise credentials_exception
         
-    user = db.query(User).filter(User.email == email).first()
-    if user is None:
+    try:
+        conn = sqlite3.connect('skillmatch.db')
+        curr = conn.cursor()
+        curr.execute("SELECT id, email, full_name, role FROM users WHERE email = ?", (email,))
+        row = curr.fetchone()
+        conn.close()
+        
+        if not row:
+            raise credentials_exception
+            
+        # Return a simple object that behaves like the User model
+        class UserMock:
+            def __init__(self, id, email, full_name, role):
+                self.id = id
+                self.email = email
+                self.full_name = full_name
+                self.role = role
+        
+        return UserMock(row[0], row[1], row[2], row[3])
+    except Exception as e:
+        print(f"Auth Security Error: {e}")
         raise credentials_exception
-    return user
